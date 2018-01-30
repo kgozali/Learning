@@ -51,7 +51,7 @@ class TransactionScreen : AppCompatActivity() {
     }
 
     private fun setupView() {
-        state.adapter = adapterExt.setupAdapter(OrientationHelper.VERTICAL, rvContent, this)
+        state.adapter = adapterExt.initializeAdapter(this, rvContent)
         renderer.render(this, state)
     }
     

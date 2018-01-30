@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.OrientationHelper
 import android.support.v7.widget.Toolbar
+import com.bumptech.glide.load.model.GlideUrl
 import com.kevingozali.learning.R
 import com.kevingozali.learning.fastadapter.AdapterExt
 import com.kevingozali.learning.fastadapter.ViewItem
@@ -20,6 +21,8 @@ class HomeScreen : AppCompatActivity() {
     private val state: State = State()
     private val renderer = Renderer()
     private val adapterExt = AdapterExt()
+    private lateinit var adapter: FastItemAdapter<ViewItem<*>>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +35,7 @@ class HomeScreen : AppCompatActivity() {
     }
 
     private fun setupView() {
-        state.adapter = adapterExt.setupAdapter(OrientationHelper.VERTICAL, rvContent, this)
+        adapter = adapterExt.initializeAdapter(this, rvContent)
         renderer.render(this, state)
     }
 
@@ -42,8 +45,7 @@ class HomeScreen : AppCompatActivity() {
     }
 
     class State : BaseState() {
-        var adapter: FastItemAdapter<ViewItem<*>> = FastItemAdapter()
-        var itemList: MutableList<ViewItem<*>> = ArrayList()
+
     }
 
     class Renderer {
@@ -59,7 +61,6 @@ class HomeScreen : AppCompatActivity() {
                 setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
             }
 
-
             listOfItems.add(AtomicImagesWithLabel.item {
                 labelText = "asda"
                 backgroundColor = R.color.colorAccent
@@ -70,7 +71,7 @@ class HomeScreen : AppCompatActivity() {
                 backgroundColor = R.color.colorAccent
             }
             )
-            state.adapter.set(listOfItems)
+            activity.adapter.set(listOfItems)
         }
     }
 
