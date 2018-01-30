@@ -61,7 +61,7 @@ class HomeScreen : AppCompatActivity() {
 
 
             listOfItems.add(AtomicImagesWithLabel.item {
-                labelText = "hfjasfhlkashflasfhlasfaslflasafda"
+                labelText = "asda"
                 backgroundColor = R.color.colorAccent
                 onClickListener = { activity.onClickListener() }
             })
